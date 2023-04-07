@@ -1,6 +1,6 @@
 {
   "name": "s-alert",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "sweet alert wrapper npm package",
   "main": "index.ts",
   "scripts": {
