@@ -1,16 +1,16 @@
 import Swal from 'sweetalert2';
 import { doPost } from 's-apis'
-const swalSuccess = (message: string,title: string): void => {
+export const swalSuccess = (message: string,title: string): void => {
     let title_: string = title ?? 'success!';
     Swal.fire(title_, message, 'success');
 };
 
-const swalError = (message: string, title: string): void => {
+export const swalError = (message: string, title: string): void => {
     let title_: string = title ?? 'Error!';
     Swal.fire(title_, message, 'error');
 };
 
-const showToast = (message: string, toastType?: string,toastPosition?:string, toastTime?:number): void => {
+export const showToast = (message: string, toastType?: string,toastPosition?:string, toastTime?:number): void => {
     const toastPosition_:string = toastPosition ?? 'top-end'
     const toastTime_:number = toastTime ?? 3000
     // @ts-ignore
@@ -32,7 +32,8 @@ const showToast = (message: string, toastType?: string,toastPosition?:string, to
         title: message
     })
 }
-const confirmRequest = async (url: string, message: string, title?: string, data?: any): Promise<Swal.SweetAlertResult> => {
+// @ts-ignore
+export const confirmRequest = async (url: string, message: string, title?: string, data?: any): Promise<Swal.SweetAlertResult> => {
 
     const result = await Swal.fire({
         title: title ?? 'Are you sure?',
@@ -63,7 +64,7 @@ const confirmRequest = async (url: string, message: string, title?: string, data
     return result;
 }
 
-const showAutoclose = (title?: string, content?: string, timer?: number ): void => {
+export const showAutoclose = (title?: string, content?: string, timer?: number ): void => {
     const title_: string = title ?? 'Auto close Alert'
     const timer_ = timer ?? 3000
     const content_: string = content ?? 'I will close in <b></b> milliseconds.'
@@ -77,6 +78,7 @@ const showAutoclose = (title?: string, content?: string, timer?: number ): void 
             Swal.showLoading()
             const b = Swal.getHtmlContainer().querySelector('b')
             timerInterval = setInterval(() => {
+                // @ts-ignore
                 b.textContent = b ? Swal.getTimerLeft() : ''
             }, 100)
         },
@@ -90,5 +92,3 @@ const showAutoclose = (title?: string, content?: string, timer?: number ): void 
     })
 }
 
-
-export default { showAutoclose, confirmRequest, showToast, swalError, swalSuccess}
